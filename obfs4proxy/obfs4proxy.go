@@ -50,7 +50,7 @@ import (
 )
 
 const (
-	obfs4proxyVersion = "0.0.13-dev"
+	obfs4proxyVersion = "0.0.13"
 	obfs4proxyLogFile = "obfs4proxy.log"
 	socksAddr         = "127.0.0.1:0"
 )
@@ -85,7 +85,12 @@ func clientSetup() (launched bool, listeners []net.Listener) {
 			continue
 		}
 
-		ln, err := net.Listen("tcp", socksAddr)
+		localBindPort := os.Getenv("TOR_PT_CLIENT_SOCKS5_BIND_PORT")
+		if localBindPort == "" {
+			localBindPort = socksAddr
+		}
+
+		ln, err := net.Listen("tcp", localBindPort)
 		if err != nil {
 			_ = pt.CmethodError(name, err.Error())
 			continue
