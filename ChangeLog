@@ -1,3 +1,7 @@
+Changes in version 0.0.14 - 2022-09-04:
+ - Fixed the incompete previous fix to the Elligator 2 subgroup issue (Thanks
+   to David Fifield).
+
 Changes in version 0.0.13 - 2022-02-04:
  - Stop using utls entirely for TLS signature normalization (meek_lite).
  - Stop pinning the certificate chain for default bridges (meek_lite).
